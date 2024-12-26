@@ -33,13 +33,20 @@
       font-size: 1rem;
       color: #777;
     }
+    .photo-section {
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+    .photo-section h2 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 15px;
       padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
     }
     .photo {
       width: 100%;
@@ -58,20 +65,69 @@
     <a href="#contact" class="text-blue-500 underline">Contact</a>
   </header>
 
-  <div class="grid">
-    <a href="photos/DSCF8289.JPG" data-lightbox="gallery"><img src="photos/DSCF8289.JPG" class="photo"></a>
-    <a href="photos/DSCF8463.JPG" data-lightbox="gallery"><img src="photos/DSCF8463.JPG" class="photo"></a>
-    <a href="photos/DSCF8474.jpg" data-lightbox="gallery"><img src="photos/DSCF8474.jpg" class="photo"></a>
-    <a href="photos/DSCF8483.JPG" data-lightbox="gallery"><img src="photos/DSCF8483.JPG" class="photo"></a>
-    <a href="photos/DSCF8529.JPG" data-lightbox="gallery"><img src="photos/DSCF8529.JPG" class="photo"></a>
-    <a href="photos/DSCF8533.JPG" data-lightbox="gallery"><img src="photos/DSCF8533.JPG" class="photo"></a>
-    <a href="photos/DSCF8538.JPG" data-lightbox="gallery"><img src="photos/DSCF8538.JPG" class="photo"></a>
-    <a href="photos/DSCF8558.JPG" data-lightbox="gallery"><img src="photos/DSCF8558.JPG" class="photo"></a>
-    <a href="photos/DSCF8621.JPG" data-lightbox="gallery"><img src="photos/DSCF8621.JPG" class="photo"></a>
-    <a href="photos/DSCF8624.JPG" data-lightbox="gallery"><img src="photos/DSCF8624.JPG" class="photo"></a>
-    <a href="photos/IMG_2364.JPG" data-lightbox="gallery"><img src="photos/IMG_2364.JPG" class="photo"></a>
-  </div>
+  <!-- Portrait Section -->
+  <section class="photo-section">
+    <h2>Portrait Photos</h2>
+    <div id="portrait-container" class="grid">
+      <!-- Portrait photos will be dynamically added here -->
+    </div>
+  </section>
+
+  <!-- Landscape Section -->
+  <section class="photo-section">
+    <h2>Landscape Photos</h2>
+    <div id="landscape-container" class="grid">
+      <!-- Landscape photos will be dynamically added here -->
+    </div>
+  </section>
 
   <script src="https://cdn.jsdelivr.net/npm/lightbox2/dist/js/lightbox.min.js"></script>
+  <script>
+    const photoPaths = [
+      'photos/DSCF8289.JPG',
+      'photos/DSCF8463.JPG',
+      'photos/DSCF8474.jpg',
+      'photos/DSCF8483.JPG',
+      'photos/DSCF8529.JPG',
+      'photos/DSCF8533.JPG',
+      'photos/DSCF8538.JPG',
+      'photos/DSCF8558.JPG',
+      'photos/DSCF8621.JPG',
+      'photos/DSCF8624.JPG',
+      'photos/IMG_2364.JPG',
+    ];
+
+    const portraitContainer = document.getElementById('portrait-container');
+    const landscapeContainer = document.getElementById('landscape-container');
+
+    function classifyAndAddPhoto(photoPath) {
+      const link = document.createElement('a');
+      link.href = photoPath;
+      link.setAttribute('data-lightbox', 'gallery');
+      link.setAttribute('data-title', 'Photo');
+
+      const img = document.createElement('img');
+      img.src = photoPath;
+      img.alt = `Photo`;
+      img.classList.add('photo');
+
+      img.onload = () => {
+        const aspectRatio = img.naturalWidth / img.naturalHeight;
+        if (aspectRatio > 1) {
+          // Landscape
+          landscapeContainer.appendChild(link);
+        } else {
+          // Portrait
+          portraitContainer.appendChild(link);
+        }
+      };
+
+      // Append the image to the link
+      link.appendChild(img);
+    }
+
+    // Load and classify all photos
+    photoPaths.forEach((path) => classifyAndAddPhoto(path));
+  </script>
 </body>
 </html>
