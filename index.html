@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organized Photography Portfolio</title>
+  <title>framedByEvan</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
   <style>
@@ -11,99 +11,67 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
     }
     header {
-      position: sticky;
-      top: 0;
-      background-color: white;
-      z-index: 10;
-      padding: 10px 20px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 40px 20px;
     }
-    .photo-section {
-      margin-top: 20px;
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-    .photo-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      padding: 10px;
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+    header p {
+      font-size: 1rem;
+      color: #777;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .photo {
-      object-fit: contain;
-      max-width: 100%;
-      max-height: 300px; /* Scaled proportionally with a reasonable height limit */
-      border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1 class="text-3xl font-bold">framedByEvan</h1>
+    <img src="photos/profile.jpg" alt="Profile Photo">
+    <h1>Evan's Portfolio</h1>
+    <p>Capturing moments, one frame at a time.</p>
+    <a href="#contact" class="text-blue-500 underline">Contact</a>
   </header>
 
-  <!-- Portrait Section -->
-  <section class="photo-section">
-<!--     <h2 class="text-2xl font-semibold text-center">Portrait Photos</h2> -->
-    <div id="portrait-container" class="photo-container portrait"></div>
-  </section>
-
-  <!-- Landscape Section -->
-  <section class="photo-section">
-<!--     <h2 class="text-2xl font-semibold text-center">Landscape Photos</h2> -->
-    <div id="landscape-container" class="photo-container landscape"></div>
-  </section>
+  <div class="grid">
+    <a href="photos/DSCF8289.JPG" data-lightbox="gallery"><img src="photos/DSCF8289.JPG" class="photo"></a>
+    <a href="photos/DSCF8463.JPG" data-lightbox="gallery"><img src="photos/DSCF8463.JPG" class="photo"></a>
+    <a href="photos/DSCF8474.jpg" data-lightbox="gallery"><img src="photos/DSCF8474.jpg" class="photo"></a>
+    <a href="photos/DSCF8483.JPG" data-lightbox="gallery"><img src="photos/DSCF8483.JPG" class="photo"></a>
+    <a href="photos/DSCF8529.JPG" data-lightbox="gallery"><img src="photos/DSCF8529.JPG" class="photo"></a>
+    <a href="photos/DSCF8533.JPG" data-lightbox="gallery"><img src="photos/DSCF8533.JPG" class="photo"></a>
+    <a href="photos/DSCF8538.JPG" data-lightbox="gallery"><img src="photos/DSCF8538.JPG" class="photo"></a>
+    <a href="photos/DSCF8558.JPG" data-lightbox="gallery"><img src="photos/DSCF8558.JPG" class="photo"></a>
+    <a href="photos/DSCF8621.JPG" data-lightbox="gallery"><img src="photos/DSCF8621.JPG" class="photo"></a>
+    <a href="photos/DSCF8624.JPG" data-lightbox="gallery"><img src="photos/DSCF8624.JPG" class="photo"></a>
+    <a href="photos/IMG_2364.JPG" data-lightbox="gallery"><img src="photos/IMG_2364.JPG" class="photo"></a>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lightbox2/dist/js/lightbox.min.js"></script>
-  <script>
-    const photoPaths = [
-      'photos/DSCF8289.JPG',
-      'photos/DSCF8551.jpg',
-      'photos/DSCF8463.JPG',
-      'photos/DSCF8474.jpg',
-      'photos/DSCF8483.JPG',
-      'photos/DSCF8529.JPG',
-      'photos/DSCF8533.JPG',
-      'photos/DSCF8538.JPG',
-      'photos/DSCF8558.JPG',
-      'photos/DSCF8621.JPG',
-      'photos/DSCF8624.JPG',
-      'photos/IMG_2364.JPG',
-    ];
-
-    const portraitContainer = document.getElementById('portrait-container');
-    const landscapeContainer = document.getElementById('landscape-container');
-
-    function classifyAndAddPhoto(photoPath) {
-      const link = document.createElement('a');
-      link.href = photoPath;
-      link.setAttribute('data-lightbox', 'gallery');
-      link.setAttribute('data-title', 'Photo');
-
-      const img = document.createElement('img');
-      img.src = photoPath;
-      img.alt = `Photo`;
-      img.classList.add('photo');
-
-      img.onload = () => {
-        const aspectRatio = img.naturalWidth / img.naturalHeight;
-        if (aspectRatio > 1) {
-          // Landscape
-          landscapeContainer.appendChild(link);
-        } else {
-          // Portrait
-          portraitContainer.appendChild(link);
-        }
-      };
-
-      // Append the image to the link
-      link.appendChild(img);
-    }
-
-    // Load and classify all photos
-    photoPaths.forEach((path) => classifyAndAddPhoto(path));
-  </script>
 </body>
 </html>
