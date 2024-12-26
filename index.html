@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photography Portfolio</title>
+  <title>Organized Photography Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -19,6 +20,9 @@
       padding: 10px 20px;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     }
+    .photo-section {
+      margin-top: 20px;
+    }
     .photo-container {
       display: flex;
       flex-wrap: wrap;
@@ -27,9 +31,17 @@
       padding: 10px;
     }
     .photo {
+      object-fit: cover;
       border-radius: 5px;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-      object-fit: cover;
+    }
+    .portrait .photo {
+      width: 1080px;
+      height: 1920px;
+    }
+    .landscape .photo {
+      width: 1920px;
+      height: 1080px;
     }
   </style>
 </head>
@@ -37,13 +49,21 @@
   <header>
     <h1 class="text-3xl font-bold">framedByEvan</h1>
   </header>
-  <div id="photo-container" class="photo-container">
-    <!-- Photos will be dynamically added here -->
-  </div>
-  <script>
-    const photoContainer = document.getElementById('photo-container');
 
-    // Array of photo file paths
+  <!-- Portrait Section -->
+  <section class="photo-section">
+    <h2 class="text-2xl font-semibold text-center">Portrait Photos</h2>
+    <div id="portrait-container" class="photo-container portrait"></div>
+  </section>
+
+  <!-- Landscape Section -->
+  <section class="photo-section">
+    <h2 class="text-2xl font-semibold text-center">Landscape Photos</h2>
+    <div id="landscape-container" class="photo-container landscape"></div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2/dist/js/lightbox.min.js"></script>
+  <script>
     const photoPaths = [
       'photos/DSCF8289.JPG',
       'photos/DSCF8463.JPG',
@@ -58,49 +78,37 @@
       'photos/IMG_2364.JPG',
     ];
 
-    let photoIndex = 0;
+    const portraitContainer = document.getElementById('portrait-container');
+    const landscapeContainer = document.getElementById('landscape-container');
 
-    // Function to determine aspect ratio and set styles dynamically
-    function createPhotoElement(photoPath) {
+    function classifyAndAddPhoto(photoPath) {
+      const link = document.createElement('a');
+      link.href = photoPath;
+      link.setAttribute('data-lightbox', 'gallery');
+      link.setAttribute('data-title', 'Photo');
+
       const img = document.createElement('img');
       img.src = photoPath;
-      img.alt = `Photo ${photoIndex + 1}`;
+      img.alt = `Photo`;
       img.classList.add('photo');
+
       img.onload = () => {
         const aspectRatio = img.naturalWidth / img.naturalHeight;
         if (aspectRatio > 1) {
-          // Landscape: 1920x1080
-          img.style.width = '1920px';
-          img.style.height = '1080px';
+          // Landscape
+          landscapeContainer.appendChild(link);
         } else {
-          // Portrait: 1080x1920
-          img.style.width = '1080px';
-          img.style.height = '1920px';
+          // Portrait
+          portraitContainer.appendChild(link);
         }
       };
-      return img;
+
+      // Append the image to the link
+      link.appendChild(img);
     }
 
-    // Function to load photos dynamically
-    function addPhotos() {
-      for (let i = 0; i < 5; i++) {
-        if (photoIndex >= photoPaths.length) break;
-        const photoElement = createPhotoElement(photoPaths[photoIndex]);
-        photoContainer.appendChild(photoElement);
-        photoIndex++;
-      }
-    }
-
-    // Load initial photos
-    addPhotos();
-
-    // Infinite scroll logic
-    window.addEventListener('scroll', () => {
-      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight - 5) {
-        addPhotos();
-      }
-    });
+    // Load and classify all photos
+    photoPaths.forEach((path) => classifyAndAddPhoto(path));
   </script>
 </body>
 </html>
