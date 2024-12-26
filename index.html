@@ -60,6 +60,14 @@
       border-radius: 8px;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
     }
+    .landscape-photo {
+      max-width: 100%; /* Scale larger for landscape photos */
+      max-height: 350px;
+    }
+    .portrait-photo {
+      max-width: 100%; /* Default scaling for portrait photos */
+      max-height: 300px;
+    }
   </style>
 </head>
 <body>
@@ -114,15 +122,16 @@
       const img = document.createElement('img');
       img.src = photoPath;
       img.alt = `Photo`;
-      img.classList.add('photo');
 
       img.onload = () => {
         const aspectRatio = img.naturalWidth / img.naturalHeight;
         if (aspectRatio > 1) {
           // Landscape
+          img.classList.add('photo', 'landscape-photo');
           landscapeContainer.appendChild(link);
         } else {
           // Portrait
+          img.classList.add('photo', 'portrait-photo');
           portraitContainer.appendChild(link);
         }
       };
