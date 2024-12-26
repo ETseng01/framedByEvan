@@ -27,8 +27,9 @@
       padding: 10px;
     }
     .photo {
-      width: 300px;
-      height: auto;
+      max-width: 300px;
+      max-height: 300px;
+      object-fit: cover;
       border-radius: 5px;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
     }
@@ -36,7 +37,7 @@
 </head>
 <body>
   <header>
-    <h1 class="text-3xl font-bold">Your Name</h1>
+    <h1 class="text-3xl font-bold">framedByEvan</h1>
   </header>
   <div id="photo-container" class="photo-container">
     <!-- Photos will be dynamically added here -->
@@ -61,15 +62,33 @@
 
     let photoIndex = 0;
 
+    // Function to determine aspect ratio and set styles dynamically
+    function createPhotoElement(photoPath) {
+      const img = document.createElement('img');
+      img.src = photoPath;
+      img.alt = `Photo ${photoIndex + 1}`;
+      img.classList.add('photo');
+      img.onload = () => {
+        const aspectRatio = img.naturalWidth / img.naturalHeight;
+        if (aspectRatio > 1) {
+          // Landscape: Make width fixed
+          img.style.width = '300px';
+          img.style.height = 'auto';
+        } else {
+          // Portrait: Make height fixed
+          img.style.height = '300px';
+          img.style.width = 'auto';
+        }
+      };
+      return img;
+    }
+
     // Function to load photos dynamically
     function addPhotos() {
       for (let i = 0; i < 5; i++) {
         if (photoIndex >= photoPaths.length) break;
-        const img = document.createElement('img');
-        img.src = photoPaths[photoIndex];
-        img.alt = `Photo ${photoIndex + 1}`;
-        img.classList.add('photo');
-        photoContainer.appendChild(img);
+        const photoElement = createPhotoElement(photoPaths[photoIndex]);
+        photoContainer.appendChild(photoElement);
         photoIndex++;
       }
     }
