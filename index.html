@@ -27,11 +27,9 @@
       padding: 10px;
     }
     .photo {
-      max-width: 300px;
-      max-height: 300px;
-      object-fit: cover;
       border-radius: 5px;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
     }
   </style>
 </head>
@@ -71,13 +69,13 @@
       img.onload = () => {
         const aspectRatio = img.naturalWidth / img.naturalHeight;
         if (aspectRatio > 1) {
-          // Landscape: Make width fixed
-          img.style.width = '300px';
-          img.style.height = 'auto';
+          // Landscape: 1920x1080
+          img.style.width = '1920px';
+          img.style.height = '1080px';
         } else {
-          // Portrait: Make height fixed
-          img.style.height = '300px';
-          img.style.width = 'auto';
+          // Portrait: 1080x1920
+          img.style.width = '1080px';
+          img.style.height = '1920px';
         }
       };
       return img;
