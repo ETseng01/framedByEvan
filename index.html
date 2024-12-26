@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Endless Scroll of Photos</title>
+  <title>Photography Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
@@ -28,13 +28,7 @@
     }
     .photo {
       width: 300px;
-      height: 200px;
-      background-color: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      color: #555;
+      height: auto;
       border-radius: 5px;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
     }
@@ -42,7 +36,7 @@
 </head>
 <body>
   <header>
-    <h1 class="text-3xl font-bold">framedByEvan</h1>
+    <h1 class="text-3xl font-bold">Your Name</h1>
   </header>
   <div id="photo-container" class="photo-container">
     <!-- Photos will be dynamically added here -->
@@ -50,13 +44,33 @@
   <script>
     const photoContainer = document.getElementById('photo-container');
 
-    // Function to generate photo elements
+    // Array of photo file paths
+    const photoPaths = [
+      'photos/DSCF8289.JPG',
+      'photos/DSCF8463.JPG',
+      'photos/DSCF8474.jpg',
+      'photos/DSCF8483.JPG',
+      'photos/DSCF8529.JPG',
+      'photos/DSCF8533.JPG',
+      'photos/DSCF8538.JPG',
+      'photos/DSCF8558.JPG',
+      'photos/DSCF8621.JPG',
+      'photos/DSCF8624.JPG',
+      'photos/IMG_2364.JPG',
+    ];
+
+    let photoIndex = 0;
+
+    // Function to load photos dynamically
     function addPhotos() {
-      for (let i = 0; i < 10; i++) {
-        const photoDiv = document.createElement('div');
-        photoDiv.classList.add('photo');
-        photoDiv.textContent = `Photo ${photoContainer.children.length + 1}`;
-        photoContainer.appendChild(photoDiv);
+      for (let i = 0; i < 5; i++) {
+        if (photoIndex >= photoPaths.length) break;
+        const img = document.createElement('img');
+        img.src = photoPaths[photoIndex];
+        img.alt = `Photo ${photoIndex + 1}`;
+        img.classList.add('photo');
+        photoContainer.appendChild(img);
+        photoIndex++;
       }
     }
 
