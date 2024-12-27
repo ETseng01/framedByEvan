@@ -48,26 +48,30 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 0; /* No gap to ensure seamless alignment */
+      grid-auto-rows: 150px;
+      gap: 10px;
+      padding: 20px;
+      grid-auto-flow: dense; /* Fill gaps by reordering */
     }
     .photo {
       position: relative;
       overflow: hidden;
-      border: none; /* No border or rounding */
-      margin: 0; /* No margin for seamless layout */
+      border: none;
+      margin: 0;
     }
     .photo img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border: none; /* No border rounding */
     }
     .landscape {
-      grid-column: span 2; /* Wider images span two columns */
+      grid-column: span 2;
+      grid-row: span 1;
     }
     .portrait {
-      grid-row: span 2; /* Taller images span two rows */
+      grid-column: span 1;
+      grid-row: span 2;
     }
   </style>
 </head>
