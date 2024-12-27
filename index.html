@@ -48,7 +48,7 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      grid-auto-rows: 150px;
+      grid-auto-rows: auto;
       gap: 10px;
       padding: 20px;
     }
@@ -61,20 +61,8 @@
     .photo img {
       display: block;
       width: 100%;
-      height: 100%;
+      height: auto;
       object-fit: cover;
-    }
-    .landscape {
-      grid-column: span 2;
-      grid-row: span 1;
-    }
-    .portrait {
-      grid-column: span 1;
-      grid-row: span 2;
-    }
-    .square {
-      grid-column: span 1;
-      grid-row: span 1;
     }
   </style>
 </head>
@@ -135,21 +123,10 @@
       img.src = photoPath;
       img.alt = 'Photo';
 
-      // Load the image and classify its aspect ratio
-      img.onload = () => {
-        const aspectRatio = img.naturalWidth / img.naturalHeight;
-
-        if (aspectRatio > 1.5) {
-          photoDiv.classList.add('landscape'); // Wider images span 2 columns
-        } else if (aspectRatio < 0.7) {
-          photoDiv.classList.add('portrait'); // Taller images span 2 rows
-        } else {
-          photoDiv.classList.add('square'); // Square images
-        }
-        photoDiv.appendChild(img);
-        link.appendChild(photoDiv);
-        photoGrid.appendChild(link);
-      };
+      // Append the photo div
+      photoDiv.appendChild(img);
+      link.appendChild(photoDiv);
+      photoGrid.appendChild(link);
     }
 
     photoPaths.forEach(classifyAndAddPhoto);
