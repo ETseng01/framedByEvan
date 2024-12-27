@@ -38,7 +38,8 @@
 
 <script>
   // Open the lightbox and display the image
-  function openLightbox(src) {
+  function openLightbox(src, event) {
+    event.preventDefault(); // Prevent default scroll behavior
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     lightboxImg.src = src;
@@ -51,5 +52,6 @@
     lightbox.style.display = 'none';
   }
 </script>
+
 </body>
 </html>
