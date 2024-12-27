@@ -59,25 +59,17 @@
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
     }
     .photo img {
+      display: block;
       width: 100%;
-      height: 100%;
+      height: auto;
       object-fit: cover;
       border-radius: 8px;
     }
     .landscape {
       grid-column: span 2;
-      grid-row: span 1;
-      aspect-ratio: 2 / 1;
     }
     .portrait {
-      grid-column: span 1;
       grid-row: span 2;
-      aspect-ratio: 1 / 2;
-    }
-    .square {
-      grid-column: span 1;
-      grid-row: span 1;
-      aspect-ratio: 1 / 1;
     }
   </style>
 </head>
@@ -123,39 +115,38 @@
     const photoGrid = document.getElementById('photo-grid');
 
     function classifyAndAddPhoto(photoPath) {
+      // Create the Lightbox link
       const link = document.createElement('a');
       link.href = photoPath;
       link.setAttribute('data-lightbox', 'gallery');
       link.setAttribute('data-title', 'Photo');
 
-      const img = document.createElement('img');
-      img.src = photoPath;
-      img.alt = 'Photo';
-
-      // Wrap the image in a div
+      // Create the photo container div
       const photoDiv = document.createElement('div');
       photoDiv.classList.add('photo');
 
+      // Create the image element
+      const img = document.createElement('img');
+      img.src = photoPath; // Use high-resolution path
+      img.alt = 'Photo';
+
+      // Load the image and classify its aspect ratio
       img.onload = () => {
         const aspectRatio = img.naturalWidth / img.naturalHeight;
 
-        // Dynamically classify and adjust photo sizes
         if (aspectRatio > 1.5) {
-          photoDiv.classList.add('landscape');
+          photoDiv.classList.add('landscape'); // Wider images span 2 columns
         } else if (aspectRatio < 0.7) {
-          photoDiv.classList.add('portrait');
-        } else {
-          photoDiv.classList.add('square');
+          photoDiv.classList.add('portrait'); // Taller images span 2 rows
         }
         photoDiv.appendChild(img);
-        photoGrid.appendChild(photoDiv);
+        link.appendChild(photoDiv);
+        photoGrid.appendChild(link);
       };
-
-      link.appendChild(photoDiv);
     }
 
     // Add all photos to the grid
-    photoPaths.forEach((path) => classifyAndAddPhoto(path));
+    photoPaths.forEach(classifyAndAddPhoto);
   </script>
 </body>
 </html>
