@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>framedByEvan</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
   <style>
     body {
@@ -49,7 +48,8 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-auto-rows: 150px;
       gap: 10px;
       padding: 20px;
     }
@@ -57,26 +57,20 @@
       position: relative;
       overflow: hidden;
       display: block;
-      border-radius: 8px;
-      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-    }
-    .photo img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
+      border-radius: 8px;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+      background-size: cover;
+      background-position: center;
     }
     .landscape {
+      grid-column: span 2; /* Landscape spans two columns */
       grid-row: span 1;
-      grid-column: span 2;
-      aspect-ratio: 2 / 1; /* Landscape aspect ratio */
     }
     .portrait {
-      grid-row: span 2;
-      grid-column: span 1;
-      aspect-ratio: 1 / 2; /* Portrait aspect ratio */
+      grid-column: span 1; /* Portrait spans one column */
+      grid-row: span 2; /* Portrait spans two rows */
     }
   </style>
 </head>
@@ -127,23 +121,26 @@
       link.setAttribute('data-lightbox', 'gallery');
       link.setAttribute('data-title', 'Photo');
 
-      const img = document.createElement('img');
-      img.src = photoPath;
-      img.alt = 'Photo';
-
-      link.appendChild(img);
-      link.classList.add('photo');
+      // Create a photo div and set the image as background
+      const photoDiv = document.createElement('div');
+      photoDiv.style.backgroundImage = `url(${photoPath})`;
+      photoDiv.classList.add('photo');
 
       // Dynamically classify as landscape or portrait
+      const img = new Image();
+      img.src = photoPath;
       img.onload = () => {
         const aspectRatio = img.naturalWidth / img.naturalHeight;
         if (aspectRatio > 1) {
-          link.classList.add('landscape');
+          photoDiv.classList.add('landscape');
         } else {
-          link.classList.add('portrait');
+          photoDiv.classList.add('portrait');
         }
         photoGrid.appendChild(link);
       };
+
+      // Add the photo div to the link
+      link.appendChild(photoDiv);
     }
 
     // Add all photos to the grid
