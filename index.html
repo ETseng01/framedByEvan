@@ -51,7 +51,6 @@
       grid-auto-rows: 150px;
       gap: 10px;
       padding: 20px;
-      grid-auto-flow: dense; /* Fill gaps by reordering */
     }
     .photo {
       position: relative;
@@ -72,6 +71,10 @@
     .portrait {
       grid-column: span 1;
       grid-row: span 2;
+    }
+    .square {
+      grid-column: span 1;
+      grid-row: span 1;
     }
   </style>
 </head>
@@ -140,6 +143,8 @@
           photoDiv.classList.add('landscape'); // Wider images span 2 columns
         } else if (aspectRatio < 0.7) {
           photoDiv.classList.add('portrait'); // Taller images span 2 rows
+        } else {
+          photoDiv.classList.add('square'); // Square images
         }
         photoDiv.appendChild(img);
         link.appendChild(photoDiv);
