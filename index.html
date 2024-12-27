@@ -9,26 +9,47 @@
 </head>
 <body>
 <div id="gallery">
-  <img src="photos/DSCF8289.JPG">
-  <img src="photos/DSCF8463.JPG">
-  <img src="photos/DSCF8474.jpg">
-  <img src="photos/DSCF8483.JPG">
-  <img src="photos/DSCF8529.JPG">
-  <img src="photos/DSCF8533.JPG">
-  <img src="photos/DSCF8538.JPG">
-  <img src="photos/DSCF8551.jpg">
-  <img src="photos/DSCF8558.JPG">
-  <img src="photos/DSCF8621.JPG">
-  <img src="photos/DSCF8624.JPG">
-  <img src="photos/DSCF8638.JPG">
-  <img src="photos/DSCF8667.JPG">
-  <img src="photos/DSCF8687.JPG">
-  <img src="photos/DSCF8693.JPG">
-  <img src="photos/DSCF8698.JPG">
-  <img src="photos/DSCF8716.JPG">
-  <img src="photos/DSCF8717.JPG">
-  <img src="photos/DSCF8726.JPG">
-  <img src="photos/IMG_2364.JPG">
+  <img src="photos/DSCF8289.JPG" onclick="openLightbox('photos/DSCF8289.JPG')">
+  <img src="photos/DSCF8463.JPG" onclick="openLightbox('photos/DSCF8463.JPG')">
+  <img src="photos/DSCF8474.jpg" onclick="openLightbox('photos/DSCF8474.jpg')">
+  <img src="photos/DSCF8483.JPG" onclick="openLightbox('photos/DSCF8483.JPG')">
+  <img src="photos/DSCF8529.JPG" onclick="openLightbox('photos/DSCF8529.JPG')">
+  <img src="photos/DSCF8533.JPG" onclick="openLightbox('photos/DSCF8533.JPG')">
+  <img src="photos/DSCF8538.JPG" onclick="openLightbox('photos/DSCF8538.JPG')">
+  <img src="photos/DSCF8551.jpg" onclick="openLightbox('photos/DSCF8551.jpg')">
+  <img src="photos/DSCF8558.JPG" onclick="openLightbox('photos/DSCF8558.JPG')">
+  <img src="photos/DSCF8621.JPG" onclick="openLightbox('photos/DSCF8621.JPG')">
+  <img src="photos/DSCF8624.JPG" onclick="openLightbox('photos/DSCF8624.JPG')">
+  <img src="photos/DSCF8638.JPG" onclick="openLightbox('photos/DSCF8638.JPG')">
+  <img src="photos/DSCF8667.JPG" onclick="openLightbox('photos/DSCF8667.JPG')">
+  <img src="photos/DSCF8687.JPG" onclick="openLightbox('photos/DSCF8687.JPG')">
+  <img src="photos/DSCF8693.JPG" onclick="openLightbox('photos/DSCF8693.JPG')">
+  <img src="photos/DSCF8698.JPG" onclick="openLightbox('photos/DSCF8698.JPG')">
+  <img src="photos/DSCF8716.JPG" onclick="openLightbox('photos/DSCF8716.JPG')">
+  <img src="photos/DSCF8717.JPG" onclick="openLightbox('photos/DSCF8717.JPG')">
+  <img src="photos/DSCF8726.JPG" onclick="openLightbox('photos/DSCF8726.JPG')">
+  <img src="photos/IMG_2364.JPG" onclick="openLightbox('photos/IMG_2364.JPG')">
 </div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+
+<script>
+  // Open the lightbox and display the image
+  function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = src;
+    lightbox.style.display = 'flex';
+  }
+
+  // Close the lightbox
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+  }
+</script>
 </body>
 </html>
