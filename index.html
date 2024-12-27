@@ -2,38 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>framedByEvan</title>
-  <meta name="description" content="Responsive Image Gallery with Title">
+  <title>Image Gallery</title>
+  <meta name="description" content="Responsive Image Gallery">
   <meta name="author" content="Your Name">
   <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <style>
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+    }
+  </style>
 </head>
 <body>
-<div id="container">
-  <div id="title">
-    <h1>fraemdByEvan</h1>
-  </div>
-  <div id="gallery">
-    <img src="photos/DSCF8289.JPG" onclick="openLightbox('photos/DSCF8289.JPG')">
-    <img src="photos/DSCF8463.JPG" onclick="openLightbox('photos/DSCF8463.JPG')">
-    <img src="photos/DSCF8474.jpg" onclick="openLightbox('photos/DSCF8474.jpg')">
-    <img src="photos/DSCF8483.JPG" onclick="openLightbox('photos/DSCF8483.JPG')">
-    <img src="photos/DSCF8529.JPG" onclick="openLightbox('photos/DSCF8529.JPG')">
-    <img src="photos/DSCF8533.JPG" onclick="openLightbox('photos/DSCF8533.JPG')">
-    <img src="photos/DSCF8538.JPG" onclick="openLightbox('photos/DSCF8538.JPG')">
-    <img src="photos/DSCF8551.jpg" onclick="openLightbox('photos/DSCF8551.jpg')">
-    <img src="photos/DSCF8558.JPG" onclick="openLightbox('photos/DSCF8558.JPG')">
-    <img src="photos/DSCF8621.JPG" onclick="openLightbox('photos/DSCF8621.JPG')">
-    <img src="photos/DSCF8624.JPG" onclick="openLightbox('photos/DSCF8624.JPG')">
-    <img src="photos/DSCF8638.JPG" onclick="openLightbox('photos/DSCF8638.JPG')">
-    <img src="photos/DSCF8667.JPG" onclick="openLightbox('photos/DSCF8667.JPG')">
-    <img src="photos/DSCF8687.JPG" onclick="openLightbox('photos/DSCF8687.JPG')">
-    <img src="photos/DSCF8693.JPG" onclick="openLightbox('photos/DSCF8693.JPG')">
-    <img src="photos/DSCF8698.JPG" onclick="openLightbox('photos/DSCF8698.JPG')">
-    <img src="photos/DSCF8716.JPG" onclick="openLightbox('photos/DSCF8716.JPG')">
-    <img src="photos/DSCF8717.JPG" onclick="openLightbox('photos/DSCF8717.JPG')">
-    <img src="photos/DSCF8726.JPG" onclick="openLightbox('photos/DSCF8726.JPG')">
-    <img src="photos/IMG_2364.JPG" onclick="openLightbox('photos/IMG_2364.JPG')">
-  </div>
+<div id="gallery">
+  <img src="photos/DSCF8289.JPG" onclick="openLightbox('photos/DSCF8289.JPG', event)">
+  <img src="photos/DSCF8463.JPG" onclick="openLightbox('photos/DSCF8463.JPG', event)">
+  <img src="photos/DSCF8474.jpg" onclick="openLightbox('photos/DSCF8474.jpg', event)">
+  <img src="photos/DSCF8483.JPG" onclick="openLightbox('photos/DSCF8483.JPG', event)">
+  <img src="photos/DSCF8529.JPG" onclick="openLightbox('photos/DSCF8529.JPG', event)">
+  <img src="photos/DSCF8533.JPG" onclick="openLightbox('photos/DSCF8533.JPG', event)">
+  <img src="photos/DSCF8538.JPG" onclick="openLightbox('photos/DSCF8538.JPG', event)">
+  <img src="photos/DSCF8551.jpg" onclick="openLightbox('photos/DSCF8551.jpg', event)">
+  <img src="photos/DSCF8558.JPG" onclick="openLightbox('photos/DSCF8558.JPG', event)">
+  <img src="photos/DSCF8621.JPG" onclick="openLightbox('photos/DSCF8621.JPG', event)">
+  <img src="photos/DSCF8624.JPG" onclick="openLightbox('photos/DSCF8624.JPG', event)">
+  <img src="photos/DSCF8638.JPG" onclick="openLightbox('photos/DSCF8638.JPG', event)">
+  <img src="photos/DSCF8667.JPG" onclick="openLightbox('photos/DSCF8667.JPG', event)">
+  <img src="photos/DSCF8687.JPG" onclick="openLightbox('photos/DSCF8687.JPG', event)">
+  <img src="photos/DSCF8693.JPG" onclick="openLightbox('photos/DSCF8693.JPG', event)">
+  <img src="photos/DSCF8698.JPG" onclick="openLightbox('photos/DSCF8698.JPG', event)">
+  <img src="photos/DSCF8716.JPG" onclick="openLightbox('photos/DSCF8716.JPG', event)">
+  <img src="photos/DSCF8717.JPG" onclick="openLightbox('photos/DSCF8717.JPG', event)">
+  <img src="photos/DSCF8726.JPG" onclick="openLightbox('photos/DSCF8726.JPG', event)">
+  <img src="photos/IMG_2364.JPG" onclick="openLightbox('photos/IMG_2364.JPG', event)">
 </div>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <div id="lightbox-close" onclick="closeLightbox()">×</div>
+  <img id="lightbox-img" src="" alt="Lightbox Image">
+</div>
+
+<script>
+  // Open the lightbox and display the image
+  function openLightbox(src, event) {
+    event.preventDefault(); // Prevent default scroll behavior
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = src;
+    lightbox.style.display = 'flex';
+  }
+
+  // Close the lightbox
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+  }
+</script>
 </body>
 </html>
