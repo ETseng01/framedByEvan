@@ -23,7 +23,6 @@
     header img {
       width: 150px;
       height: 150px;
-      border-radius: 50%;
       object-fit: cover;
       margin-bottom: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -49,27 +48,26 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 10px;
-      padding: 20px;
+      gap: 0; /* No gap to ensure seamless alignment */
     }
     .photo {
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+      border: none; /* No border or rounding */
+      margin: 0; /* No margin for seamless layout */
     }
     .photo img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
       object-fit: cover;
-      border-radius: 8px;
+      border: none; /* No border rounding */
     }
     .landscape {
-      grid-column: span 2;
+      grid-column: span 2; /* Wider images span two columns */
     }
     .portrait {
-      grid-row: span 2;
+      grid-row: span 2; /* Taller images span two rows */
     }
   </style>
 </head>
@@ -127,7 +125,7 @@
 
       // Create the image element
       const img = document.createElement('img');
-      img.src = photoPath; // Use high-resolution path
+      img.src = photoPath;
       img.alt = 'Photo';
 
       // Load the image and classify its aspect ratio
@@ -145,7 +143,6 @@
       };
     }
 
-    // Add all photos to the grid
     photoPaths.forEach(classifyAndAddPhoto);
   </script>
 </body>
