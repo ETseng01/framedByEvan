@@ -57,13 +57,17 @@
       overflow: hidden;
       border: none;
       margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+    
     .photo img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
+      width: 100%; /* Ensure width is fully responsive within the container */
+      height: 100%; /* This will ensure the height is controlled */
+      object-fit: cover; /* This will cover the area without breaking the aspect ratio */
     }
+
   </style>
 </head>
 <body>
