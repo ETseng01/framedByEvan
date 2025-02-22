@@ -1,4 +1,4 @@
-<!-- <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -100,112 +100,6 @@
 </script>
 </body>
 </html>
- -->
 
- <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>framedByEvan</title>
-  <meta name="description" content="Photo Gallery">
-  <meta name="author" content="Evan Tseng">
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
-  <link rel="icon" type="image/x-icon" href="/photos/favicon.ico" />
-  <style>
-    #lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
 
-    #lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-
-    #lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-      z-index: 1001;
-    }
-    #gallery img {
-      width: 100%; /* Maintain aspect ratio, adjust as needed */
-      height: auto;
-      padding: 5px; /* Spacing between images */
-    }
-  </style>
-</head>
-<body>
-<div id="gallery">
-  <!-- Images will be populated by JavaScript -->
-</div>
-
-<div id="lightbox" onclick="closeLightbox()">
-  <div id="lightbox-close" onclick="closeLightbox()">×</div>
-  <img id="lightbox-img" src="" alt="Lightbox Image">
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var images = [
-      'photos/DSCF9829.JPG', 'photos/DSCF9803.JPG', 'photos/DSCF9525.JPG',
-      'photos/DSCF9540.JPG', 'photos/DSCF9617.JPG', 'photos/DSCF9695.JPG',
-      'photos/DSCF9721.JPG', 'photos/MovementInAction.JPG', 'photos/DSCF9278.JPG',
-      'photos/FrameinFrame.JPG', 'photos/FrameinFrame2.JPG', 'photos/Silouhette.JPG',
-      'photos/FramewithinFrame3.JPG', 'photos/DSCF8350.jpg', 'photos/DSCF8291.jpg',
-      'photos/DSCF3543.JPG', 'photos/DSCF8289.JPG', 'photos/DSCF8463.JPG',
-      'photos/DSCF8474.jpg', 'photos/DSCF8483.JPG', 'photos/DSCF8529.JPG',
-      'photos/DSCF8533.JPG', 'photos/DSCF8538.JPG', 'photos/DSCF8551.jpg',
-      'photos/DSCF8558.JPG', 'photos/DSCF8621.JPG', 'photos/DSCF8624.JPG',
-      'photos/DSCF8638.JPG', 'photos/DSCF8667.JPG', 'photos/DSCF8687.JPG',
-      'photos/DSCF8693.JPG', 'photos/DSCF8698.JPG', 'photos/DSCF8716.JPG',
-      'photos/DSCF8717.JPG', 'photos/DSCF8726.JPG', 'photos/IMG_2364.JPG'
-    ];
-    
-    shuffleArray(images); // Randomize the order of images
-
-    var gallery = document.getElementById('gallery');
-    images.forEach(function(src) {
-      var img = document.createElement('img');
-      img.src = src;
-      img.onclick = function(event) { openLightbox(src, event); };
-      gallery.appendChild(img);
-    });
-  });
-
-  // Function to randomize array elements
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-    }
-  }
-
-  // Open the lightbox and display the image
-  function openLightbox(src, event) {
-    event.preventDefault(); // Prevent default scroll behavior
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    lightboxImg.src = src;
-    lightbox.style.display = 'flex';
-  }
-
-  // Close the lightbox
-  function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.style.display = 'none';
-  }
-</script>
-</body>
-</html>
+ 
