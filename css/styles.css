@@ -1,30 +1,42 @@
 /* Main container to hold the title and gallery */
 #container {
   display: flex;
-  flex-direction: column; /* Arrange items vertically */
+  flex-direction: column;
+  /* Arrange items vertically */
 }
 
 /* Title styling */
 #title {
   text-align: center;
-  background-color: #333;
   color: #fff;
-  padding: 20px;
+  padding: 40px 0 20px;
   font-family: 'Gill Sans', sans-serif;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background: none;
+  box-shadow: none;
 }
+
 
 #title h1 {
   margin: 0;
   font-size: 36px;
 }
 
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: #111;
+}
+
+
+
 /* Gallery styling */
 #gallery {
   line-height: 0;
   padding: 10px;
-  -webkit-column-count: 5; /* split it into 5 columns */
-  -webkit-column-gap: 5px; /* give it a 5px gap between columns */
+  -webkit-column-count: 5;
+  /* split it into 5 columns */
+  -webkit-column-gap: 5px;
+  /* give it a 5px gap between columns */
   -moz-column-count: 5;
   -moz-column-gap: 5px;
   column-count: 5;
@@ -34,8 +46,9 @@
 #gallery img {
   width: 100% !important;
   height: auto !important;
-  margin-bottom: 5px; /* Matches column gap */
+  margin-bottom: 20px;
 }
+
 
 /* Media queries to make it responsive */
 @media (max-width: 1200px) {
@@ -68,4 +81,26 @@
     -webkit-column-count: 1;
     column-count: 1;
   }
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px 0;
+  background-color: #111;
+  font-family: 'Gill Sans', sans-serif;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: opacity 0.3s ease;
+}
+
+.navbar a:hover {
+  opacity: 0.6;
 }
