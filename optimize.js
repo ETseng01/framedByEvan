@@ -14,9 +14,11 @@ fs.readdirSync(inputDir).forEach(file => {
   const outputPath = path.join(outputDir, file);
 
   sharp(inputPath)
-    .resize({ width: 2000 }) // Max width
-    .jpeg({ quality: 80 })   // Compression quality
-    .toFile(outputPath)
-    .then(() => console.log(`Optimized: ${file}`))
-    .catch(err => console.error(err));
+  .rotate() // auto-rotate based on EXIF
+  .resize({ width: 2000 })
+  .jpeg({ quality: 80 })
+  .toFile(outputPath)
+  .then(() => console.log(`Optimized: ${file}`))
+  .catch(err => console.error(err));
+
 });
