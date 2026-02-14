@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>framedByEvan</title>
@@ -41,40 +42,42 @@
 
 <body>
 
-<div id="gallery"></div>
+  <div id="gallery"></div>
 
-<div id="lightbox" onclick="closeLightbox()">
-  <div id="lightbox-close" onclick="closeLightbox()">×</div>
-  <img id="lightbox-img" src="" alt="Lightbox Image">
-</div>
+  <div id="lightbox" onclick="closeLightbox()">
+    <div id="lightbox-close" onclick="closeLightbox()">×</div>
+    <img id="lightbox-img" src="" alt="Lightbox Image">
+  </div>
 
-<script>
-fetch('photos.json')
-  .then(response => response.json())
-  .then(images => {
-    const gallery = document.getElementById('gallery');
+  <script>
+    fetch('/photos.json')
 
-    images.forEach(image => {
-      const img = document.createElement('img');
-      img.src = `photos/${image}`;
-      img.loading = "lazy";
-      img.onclick = (event) => openLightbox(`photos/${image}`, event);
-      gallery.appendChild(img);
-    });
-  });
+      .then(response => response.json())
+      .then(images => {
+        const gallery = document.getElementById('gallery');
 
-function openLightbox(src, event) {
-  event.preventDefault();
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  lightboxImg.src = src;
-  lightbox.style.display = 'flex';
-}
+        images.forEach(image => {
+          const img = document.createElement('img');
+          img.src = `photos/${image}`;
+          img.loading = "lazy";
+          img.onclick = (event) => openLightbox(`photos/${image}`, event);
+          gallery.appendChild(img);
+        });
+      });
 
-function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
-}
-</script>
+    function openLightbox(src, event) {
+      event.preventDefault();
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
 
 </body>
+
 </html>
