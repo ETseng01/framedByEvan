@@ -25,9 +25,12 @@ async function processImages() {
     if (fs.existsSync(outputPath)) continue;
 
     await sharp(inputPath)
+      .rotate() // <-- THIS FIXES ORIENTATION
       .resize({ width: 1800 })
       .jpeg({ quality: 80 })
       .toFile(outputPath);
+
+
 
     console.log(`Optimized: ${file}`);
   }
