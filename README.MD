@@ -1,7 +1,9 @@
-This is the first file in my portfolio
+Add images to raw/ folder
 
-rm photos/*
+then run:
 
 npm run optimize
-
 ls -t photos | grep -E '\.(JPG|jpg|jpeg|png)$' | jq -R . | jq -s . > photos.json
+git add .
+git commit -m "Add new photos"
+git push
