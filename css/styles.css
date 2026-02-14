@@ -1,4 +1,7 @@
-/* Global Reset */
+/* =========================
+   GLOBAL
+========================= */
+
 body {
   margin: 0;
   background: #ffffff;
@@ -10,7 +13,6 @@ body {
    NAVIGATION
 ========================= */
 
-/* NAVBAR */
 .navbar {
   display: flex;
   flex-direction: column;
@@ -41,22 +43,6 @@ body {
   color: #000;
 }
 
-
-/* =========================
-   TITLE (Optional)
-========================= */
-
-#title {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-#title h1 {
-  font-size: 32px;
-  font-weight: 600;
-  margin: 0;
-}
-
 /* =========================
    GALLERY
 ========================= */
@@ -64,58 +50,86 @@ body {
 #gallery {
   padding: 0 60px 60px 60px;
   column-count: 4;
-  column-gap: 15px;   /* smaller horizontal gap */
+  column-gap: 15px;
 }
 
 #gallery img {
   width: 100%;
-  margin-bottom: 10px;  /* smaller vertical gap */
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
 }
-
-
 
 #gallery img:hover {
   transform: scale(1.02);
 }
 
 /* =========================
-   EQUIPMENT PAGE CONTENT
+   EQUIPMENT PAGE
 ========================= */
 
-.content {
-  max-width: 800px;
-  margin: 80px auto;
-  padding: 0 20px;
+.equipment {
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 0 40px;
+  text-align: center;
 }
 
-.content h1 {
-  font-size: 36px;
+.equipment h1 {
+  font-size: 40px;
+  margin-bottom: 80px;
+}
+
+.gear-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.gear-category h2 {
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
   margin-bottom: 40px;
 }
 
-.content h2 {
-  margin-top: 40px;
-  margin-bottom: 10px;
+.gear-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.content ul {
-  padding-left: 20px;
+.gear-card {
+  margin-bottom: 60px;
+  transition: transform 0.3s ease;
+}
+
+.gear-card img {
+  width: 280px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.gear-card:hover {
+  transform: translateY(-5px);
+}
+
+.gear-info h3 {
+  font-size: 18px;
+  margin: 0;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media (max-width: 1200px) {
-  #gallery {
-    column-count: 3;
-  }
-}
-
 @media (max-width: 900px) {
   #gallery {
     column-count: 2;
-    padding: 0 40px 60px 40px;
+  }
+
+  .gear-card img {
+    width: 200px;
   }
 }
 
@@ -126,7 +140,6 @@ body {
   }
 
   .navbar {
-    gap: 30px;
     padding: 20px 0;
   }
 }
