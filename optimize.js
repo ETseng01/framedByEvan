@@ -40,11 +40,7 @@ async function processImages() {
 
 function generateJSON() {
   const photoFiles = fs.readdirSync(photosDir)
-  .filter(file =>
-    /\.(jpg|jpeg|png)$/i.test(file) &&
-    !file.startsWith('_')
-  );
-  
+    .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
 
   const photosWithDates = photoFiles.map(file => {
     const buffer = fs.readFileSync(path.join(photosDir, file));
