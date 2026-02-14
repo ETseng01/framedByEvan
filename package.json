@@ -225,10 +225,9 @@
     "yauzl": "^2.10.0"
   },
   "scripts": {
-  "optimize": "node optimize.js",
-  "publish": "node optimize.js && git add . && git commit -m \"Auto publish new photos\" && git push"
-}
-,
+    "optimize": "node optimize.js",
+    "publish": "node optimize.js && git add . && git commit -m \"Auto publish new photos\" && git push"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ETseng01/framedByEvan.git"
