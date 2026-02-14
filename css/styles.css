@@ -1,106 +1,132 @@
-/* Main container to hold the title and gallery */
-#container {
-  display: flex;
-  flex-direction: column;
-  /* Arrange items vertically */
-}
-
-/* Title styling */
-#title {
-  text-align: center;
-  color: #fff;
-  padding: 40px 0 20px;
-  font-family: 'Gill Sans', sans-serif;
-  background: none;
-  box-shadow: none;
-}
-
-
-#title h1 {
-  margin: 0;
-  font-size: 36px;
-}
-
+/* Global Reset */
 body {
   margin: 0;
-  background-color: #ffffff;
+  background: #ffffff;
   color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+/* =========================
+   NAVIGATION
+========================= */
 
-
-/* Gallery styling */
-#gallery {
-  line-height: 0;
-  padding: 10px;
-  -webkit-column-count: 5;
-  /* split it into 5 columns */
-  -webkit-column-gap: 5px;
-  /* give it a 5px gap between columns */
-  -moz-column-count: 5;
-  -moz-column-gap: 5px;
-  column-count: 5;
-  column-gap: 5px;
+/* NAVBAR */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0 20px 0;
 }
 
-#gallery img {
-  width: 100% !important;
-  height: auto !important;
+.logo {
+  font-size: 28px;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
-
-/* Media queries to make it responsive */
-@media (max-width: 1200px) {
-  #gallery {
-    -moz-column-count: 4;
-    -webkit-column-count: 4;
-    column-count: 4;
-  }
+.nav-links {
+  display: flex;
+  gap: 60px;
 }
 
-@media (max-width: 1000px) {
+.nav-links a {
+  text-decoration: none;
+  color: #666;
+  font-size: 15px;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #000;
+}
+
+
+/* =========================
+   TITLE (Optional)
+========================= */
+
+#title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#title h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+#gallery {
+  padding: 0 80px 80px 80px;
+  column-count: 4;
+  column-gap: 30px;
+}
+
+#gallery img {
+  width: 100%;
+  display: block;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+#gallery img:hover {
+  transform: scale(1.02);
+}
+
+/* =========================
+   EQUIPMENT PAGE CONTENT
+========================= */
+
+.content {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.content h1 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.content h2 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.content ul {
+  padding-left: 20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
   #gallery {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
     column-count: 3;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   #gallery {
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
     column-count: 2;
+    padding: 0 40px 60px 40px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   #gallery {
-    -moz-column-count: 1;
-    -webkit-column-count: 1;
     column-count: 1;
+    padding: 0 20px 40px 20px;
   }
-}
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 20px 0;
-  background-color: #111;
-  font-family: 'Gill Sans', sans-serif;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  letter-spacing: 1px;
-  transition: opacity 0.3s ease;
-}
-
-.navbar a:hover {
-  opacity: 0.6;
+  .navbar {
+    gap: 30px;
+    padding: 20px 0;
+  }
 }
