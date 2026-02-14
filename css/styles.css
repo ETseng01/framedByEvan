@@ -62,15 +62,16 @@ body {
 ========================= */
 
 #gallery {
-  padding: 0 80px 80px 80px;
+  padding: 0 60px 60px 60px;
   column-count: 4;
-  column-gap: 30px;
+  column-gap: 15px;   /* smaller horizontal gap */
 }
 
 #gallery img {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 10px;  /* smaller vertical gap */
 }
+
 
 
 #gallery img:hover {
