@@ -69,10 +69,9 @@ body {
 
 #gallery img {
   width: 100%;
-  display: block;
   margin-bottom: 30px;
-  transition: transform 0.3s ease;
 }
+
 
 #gallery img:hover {
   transform: scale(1.02);
