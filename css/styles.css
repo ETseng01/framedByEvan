@@ -21,18 +21,15 @@ body {
 }
 
 .logo {
-  font-size: 28px;
-  font-weight: 600;
   margin-bottom: 20px;
 }
 
+/*Change this to change th size of the logo*/
 .logo img {
-  height: 60px;
-  width: auto;
+  width: 350px;
+  height: auto;
   display: block;
-}
-
-
+  }
 
 .nav-links {
   display: flex;
@@ -76,54 +73,49 @@ body {
 ========================= */
 
 .equipment {
-  max-width: 1200px;
-  margin: 120px auto;
-  padding: 0 40px;
-  text-align: center;
+  max-width: 1300px;
+  margin: 100px auto;
+  padding: 0 60px;
 }
 
-.equipment h1 {
-  font-size: 40px;
+.gear-category {
   margin-bottom: 80px;
 }
 
-.gear-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
-}
-
 .gear-category h2 {
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #888;
   margin-bottom: 40px;
 }
 
-.gear-category {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* GRID LAYOUT FOR CARDS */
+
+.gear-grid-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
 }
 
 .gear-card {
-  margin-bottom: 60px;
+  text-align: center;
   transition: transform 0.3s ease;
-}
-
-.gear-card img {
-  width: 280px;
-  height: auto;
-  margin-bottom: 20px;
 }
 
 .gear-card:hover {
   transform: translateY(-5px);
 }
 
+.gear-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
 .gear-info h3 {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
 }
 
@@ -131,17 +123,19 @@ body {
    RESPONSIVE
 ========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
+
   #gallery {
     column-count: 2;
   }
 
-  .gear-card img {
-    width: 200px;
+  .gear-grid-row {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
+
   #gallery {
     column-count: 1;
     padding: 0 20px 40px 20px;
@@ -151,6 +145,11 @@ body {
     padding: 20px 0;
   }
 
-  
+  .gear-grid-row {
+    grid-template-columns: 1fr;
+  }
 
+  .equipment {
+    padding: 0 30px;
+  }
 }
