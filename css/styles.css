@@ -26,6 +26,14 @@ body {
   margin-bottom: 20px;
 }
 
+.logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+
+
 .nav-links {
   display: flex;
   gap: 60px;
@@ -142,4 +150,7 @@ body {
   .navbar {
     padding: 20px 0;
   }
+
+  
+
 }
