@@ -74,16 +74,17 @@
       .then(response => response.json())
       .then(images => {
         const gallery = document.getElementById('gallery');
-
+  
         images.forEach(image => {
           const img = document.createElement('img');
           img.src = `photos/${image}`;
           img.loading = "lazy";
+          img.onload = resizeAllGridItems;
           img.onclick = (event) => openLightbox(`photos/${image}`, event);
           gallery.appendChild(img);
         });
       });
-
+  
     function resizeAllGridItems() {
       const grid = document.getElementById("gallery");
       const rowHeight = parseInt(
@@ -92,7 +93,7 @@
       const rowGap = parseInt(
         window.getComputedStyle(grid).getPropertyValue("gap")
       );
-
+  
       grid.querySelectorAll("img").forEach((item) => {
         const rowSpan = Math.ceil(
           (item.getBoundingClientRect().height + rowGap) /
@@ -101,11 +102,25 @@
         item.style.gridRowEnd = "span " + rowSpan;
       });
     }
-
+  
     window.addEventListener("load", resizeAllGridItems);
     window.addEventListener("resize", resizeAllGridItems);
-
+  
+    // ✅ Add these AFTER resizeAllGridItems
+  
+    function openLightbox(src, event) {
+      event.preventDefault();
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
+    }
+  
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
   </script>
+  
 
 
 </body>
