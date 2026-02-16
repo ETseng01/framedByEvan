@@ -75,7 +75,7 @@
       .then(images => {
         const gallery = document.getElementById('gallery');
 
-        images.reverse().forEach(image => {
+        images.forEach(image => {
           const img = document.createElement('img');
           img.src = `photos/${image}`;
           img.loading = "lazy";
@@ -83,6 +83,7 @@
           gallery.appendChild(img);
         });
       });
+
 
 
     function openLightbox(src, event) {
