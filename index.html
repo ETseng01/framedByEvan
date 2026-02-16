@@ -71,12 +71,11 @@
 
   <script>
     fetch('/photos.json')
-
       .then(response => response.json())
       .then(images => {
         const gallery = document.getElementById('gallery');
 
-        images.forEach(image => {
+        images.reverse().forEach(image => {
           const img = document.createElement('img');
           img.src = `photos/${image}`;
           img.loading = "lazy";
@@ -84,6 +83,7 @@
           gallery.appendChild(img);
         });
       });
+
 
     function openLightbox(src, event) {
       event.preventDefault();

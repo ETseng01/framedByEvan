@@ -54,19 +54,22 @@ body {
 
 #gallery {
   padding: 0 60px 60px 60px;
-  column-count: 4;
+  column-count: 5;
   column-gap: 15px;
 }
 
 #gallery img {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  break-inside: avoid;
+  display: block;
   transition: transform 0.3s ease;
 }
 
 #gallery img:hover {
   transform: scale(1.02);
 }
+
 
 /* =========================
    EQUIPMENT PAGE

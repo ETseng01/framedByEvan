@@ -40,27 +40,24 @@ async function processImages() {
 
 function generateJSON() {
   const photoFiles = fs.readdirSync(photosDir)
-    .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
+    .filter(file => /\.(jpe?g)$/i.test(file));
 
-  const photosWithDates = photoFiles.map(file => {
-    const buffer = fs.readFileSync(path.join(photosDir, file));
-
-    try {
-      const parser = ExifParser.create(buffer);
-      const result = parser.parse();
-      const date = result.tags.DateTimeOriginal || 0;
-      return { file, date };
-    } catch {
-      return { file, date: 0 };
-    }
+  const photosWithTime = photoFiles.map(file => {
+    const stats = fs.statSync(path.join(photosDir, file));
+    return {
+      file,
+      time: stats.mtimeMs
+    };
   });
 
-  photosWithDates.sort((a, b) => b.date - a.date);
+  // Newest first
+  photosWithTime.sort((a, b) => b.time - a.time);
 
-  const sortedFiles = photosWithDates.map(p => p.file);
+  const sortedFiles = photosWithTime.map(p => p.file);
 
   fs.writeFileSync(outputFile, JSON.stringify(sortedFiles, null, 2));
-  console.log('photos.json updated (sorted by EXIF date)');
+  console.log('photos.json updated (newest first)');
 }
+
 
 processImages();
