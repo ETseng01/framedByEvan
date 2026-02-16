@@ -45,22 +45,15 @@
   <nav class="navbar">
     <div class="logo">
       <a href="index.html">
-        <img src="framedByEkans.svg">
-
+        <img src="framedByEkans.svg" alt="framedByEvan logo">
       </a>
     </div>
-
 
     <div class="nav-links">
       <a href="index.html">Portfolio</a>
       <a href="equipment.html">My Equipment</a>
     </div>
   </nav>
-
-
-
-
-
 
   <div id="gallery"></div>
 
@@ -70,10 +63,13 @@
   </div>
 
   <script>
-    fetch('/photos.json')
-
+    fetch('photos.json')
       .then(response => response.json())
       .then(images => {
+
+        // 🔥 Shuffle images randomly every load
+        // images.sort(() => Math.random() - 0.5);
+
         const gallery = document.getElementById('gallery');
 
         images.forEach(image => {
@@ -97,7 +93,6 @@
       document.getElementById('lightbox').style.display = 'none';
     }
   </script>
-
 
 </body>
 
