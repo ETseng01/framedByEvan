@@ -23,9 +23,11 @@
       z-index: 1000;
     }
 
+    /* Only show the lightbox image when the lightbox is open */
     #lightbox img {
       max-width: 90%;
       max-height: 90%;
+      display: block;
     }
 
     #lightbox-close {
@@ -45,11 +47,9 @@
   <nav class="navbar">
     <div class="logo">
       <a href="index.html">
-        <img src="framedByEkans.svg">
-
+        <img src="framedByEkans.svg" alt="framedByEkans logo">
       </a>
     </div>
-
 
     <div class="nav-links">
       <a href="index.html">Portfolio</a>
@@ -57,16 +57,12 @@
     </div>
   </nav>
 
-
-
-
-
-
   <div id="gallery"></div>
 
   <div id="lightbox" onclick="closeLightbox()">
     <div id="lightbox-close" onclick="closeLightbox()">×</div>
-    <img id="lightbox-img" src="" alt="Lightbox Image">
+    <!-- NOTE: removed src="" to avoid broken/blank image placeholder -->
+    <img id="lightbox-img" alt="Lightbox Image">
   </div>
 
   <script>
@@ -74,7 +70,7 @@
       .then(response => response.json())
       .then(images => {
         const gallery = document.getElementById('gallery');
-  
+
         images.forEach(image => {
           const img = document.createElement('img');
           img.src = `photos/${image}`;
@@ -84,7 +80,7 @@
           gallery.appendChild(img);
         });
       });
-  
+
     function resizeAllGridItems() {
       const grid = document.getElementById("gallery");
       const rowHeight = parseInt(
@@ -93,7 +89,7 @@
       const rowGap = parseInt(
         window.getComputedStyle(grid).getPropertyValue("gap")
       );
-  
+
       grid.querySelectorAll("img").forEach((item) => {
         const rowSpan = Math.ceil(
           (item.getBoundingClientRect().height + rowGap) /
@@ -102,27 +98,27 @@
         item.style.gridRowEnd = "span " + rowSpan;
       });
     }
-  
+
     window.addEventListener("load", resizeAllGridItems);
     window.addEventListener("resize", resizeAllGridItems);
-  
-    // ✅ Add these AFTER resizeAllGridItems
-  
+
     function openLightbox(src, event) {
       event.preventDefault();
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
+
       lightboxImg.src = src;
       lightbox.style.display = 'flex';
     }
-  
+
     function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      lightbox.style.display = 'none';
+      lightboxImg.removeAttribute('src'); // prevents any “blank image” placeholder
     }
   </script>
-  
-
 
 </body>
-
 </html>
