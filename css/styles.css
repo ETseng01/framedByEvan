@@ -51,26 +51,19 @@ body {
 /* =========================
    GALLERY
 ========================= */
-
 #gallery {
   padding: 0 60px 60px 60px;
-  column-count: 5;
-  column-gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 10px;
+  gap: 15px;
 }
 
 #gallery img {
   width: 100%;
-  margin-bottom: 15px;
-  break-inside: avoid;
   display: block;
   transition: transform 0.3s ease;
 }
-
-#gallery img:hover {
-  transform: scale(1.02);
-}
-
-
 /* =========================
    EQUIPMENT PAGE
 ========================= */

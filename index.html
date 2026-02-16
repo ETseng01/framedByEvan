@@ -84,19 +84,27 @@
         });
       });
 
+    function resizeAllGridItems() {
+      const grid = document.getElementById("gallery");
+      const rowHeight = parseInt(
+        window.getComputedStyle(grid).getPropertyValue("grid-auto-rows")
+      );
+      const rowGap = parseInt(
+        window.getComputedStyle(grid).getPropertyValue("gap")
+      );
 
-
-    function openLightbox(src, event) {
-      event.preventDefault();
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';
+      grid.querySelectorAll("img").forEach((item) => {
+        const rowSpan = Math.ceil(
+          (item.getBoundingClientRect().height + rowGap) /
+          (rowHeight + rowGap)
+        );
+        item.style.gridRowEnd = "span " + rowSpan;
+      });
     }
 
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
+    window.addEventListener("load", resizeAllGridItems);
+    window.addEventListener("resize", resizeAllGridItems);
+
   </script>
 
 
