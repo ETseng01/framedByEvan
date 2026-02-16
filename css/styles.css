@@ -54,7 +54,7 @@ body {
 #gallery {
   padding: 0 60px 60px 60px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 8px;
   gap: 7px;
 }
